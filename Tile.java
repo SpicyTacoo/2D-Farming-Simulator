@@ -136,11 +136,11 @@ public class Tile {
         ageCounter++;
     }
 
-    public boolean checkIfHasWaterBonus() {
+    public boolean hasWaterBonus() {
         return waterCounter > plantedCrop.getWaterNeeded();
     }
 
-    public boolean checkIfHasFertilizerBonus() {
+    public boolean hasFertilizerBonus() {
         return fertilizerCounter > plantedCrop.getFertilizerNeeded();
     }
 

@@ -104,9 +104,9 @@ public class FarmLot {
 
             harvestTotal = productProduced * (tile.get(index).getPlantedCrop().getBasePrice() + player.getFarmerType().getBonusEarningsPerProduce()); // farmer type earning bonus
 
-            if (tile.get(index).checkIfHasWaterBonus())
+            if (tile.get(index).hasWaterBonus())
                 waterBonus = harvestTotal * 0.2 * (tile.get(index).getPlantedCrop().getWaterBonus() - 1);
-            if (tile.get(index).checkIfHasFertilizerBonus())
+            if (tile.get(index).hasFertilizerBonus())
                 fertilizerBonus = harvestTotal * 0.5 * tile.get(index).getPlantedCrop().getFertilizerBonus();
 
             finalHarvestPrice = harvestTotal + waterBonus + fertilizerBonus;
