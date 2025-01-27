@@ -29,21 +29,21 @@ public class GUI {
 
     private JButton[][] tiles = new JButton[5][10];
 
-    private ImageIcon icon = new ImageIcon("gameicon.png"); // for window icon
-    private ImageIcon plowIcon = new ImageIcon("plow.png");
-    private ImageIcon wateringCanIcon = new ImageIcon("wateringcan.png");
-    private ImageIcon fertilizerIcon = new ImageIcon("fertilizer.png");
-    private ImageIcon pickaxeIcon = new ImageIcon("pickaxe.png");
-    private ImageIcon shovelIcon = new ImageIcon("shovel.png");
+    private ImageIcon icon = new ImageIcon("Images/gameicon.png"); // for window icon
+    private ImageIcon plowIcon = new ImageIcon("Images/plow.png");
+    private ImageIcon wateringCanIcon = new ImageIcon("Images/wateringcan.png");
+    private ImageIcon fertilizerIcon = new ImageIcon("Images/fertilizer.png");
+    private ImageIcon pickaxeIcon = new ImageIcon("Images/pickaxe.png");
+    private ImageIcon shovelIcon = new ImageIcon("Images/shovel.png");
 
-    private ImageIcon turnipIcon = new ImageIcon("turnip.png");
-    private ImageIcon carrotIcon = new ImageIcon("carrot.png");
-    private ImageIcon potatoIcon = new ImageIcon("potato.png");
-    private ImageIcon roseIcon = new ImageIcon("rose.png");
-    private ImageIcon tulipIcon = new ImageIcon("tulip.png");
-    private ImageIcon sunflowerIcon = new ImageIcon("sunflower.png");
-    private ImageIcon mangoIcon = new ImageIcon("mango.png");
-    private ImageIcon appleIcon = new ImageIcon("apple.png");
+    private ImageIcon turnipIcon = new ImageIcon("Images/turnip.png");
+    private ImageIcon carrotIcon = new ImageIcon("Images/carrot.png");
+    private ImageIcon potatoIcon = new ImageIcon("Images/potato.png");
+    private ImageIcon roseIcon = new ImageIcon("Images/rose.png");
+    private ImageIcon tulipIcon = new ImageIcon("Images/tulip.png");
+    private ImageIcon sunflowerIcon = new ImageIcon("Images/sunflower.png");
+    private ImageIcon mangoIcon = new ImageIcon("Images/mango.png");
+    private ImageIcon appleIcon = new ImageIcon("Images/apple.png");
 
     // panels
     private JPanel panel1 = new JPanel(new BorderLayout());
