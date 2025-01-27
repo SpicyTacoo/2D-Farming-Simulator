@@ -38,6 +38,7 @@ public class MyFarm {
         Path file = Paths.get("rocks.txt");
         ArrayList<String> rockList = new ArrayList<>();
 
+        // get info of the spawning of rocks from rocks.txt (1 = rocks on tile, 0 = no rocks on tile)
         try{
             BufferedReader reader = Files.newBufferedReader(file);
             String line;
@@ -56,13 +57,14 @@ public class MyFarm {
             throw new RuntimeException(e);
         }
 
-
+        // initialize 50 tiles
         for (int i = 0; i < 50; i++) {
             farmLot.getTile().add(new Tile());
         }
 
         farmLot.initializeTileRock(rockList);
 
+        // set to gray color if the tile has rock
         for (int i = 0; i < 5; i++) {
             for (int j = 0; j < 10; j++) {
                 if (farmLot.getTile().get((i * 10) + j).isRocked())
