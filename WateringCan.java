@@ -5,8 +5,7 @@ class WateringCan extends Tool {
 
     @Override
     protected boolean isUsable(FarmLot farmLot, int tileIndex) {
-        return !farmLot.getTile().get(tileIndex).isWatered() &&
-                farmLot.getTile().get(tileIndex).isOccupied();
+        return farmLot.getTile().get(tileIndex).isOccupied();
     }
 
     @Override
@@ -16,7 +15,7 @@ class WateringCan extends Tool {
 
     @Override
     protected String getFailureMessage(int tileIndex) {
-        return "Tile " + (tileIndex + 1) + " has already been watered or is empty.";
+        return "Tile " + (tileIndex + 1) + " has no crop.";
     }
 
     protected String getSuccessMessage(int tileIndex) {
