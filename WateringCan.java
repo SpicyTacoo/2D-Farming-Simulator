@@ -19,6 +19,6 @@ class WateringCan extends Tool {
     }
 
     protected String getSuccessMessage(int tileIndex) {
-        return "Watering Can used successfully on Tile " + (tileIndex + 1) + ".";
+        return "Watering Can used successfully on Tile " + (tileIndex + 1) + ". You gained " + getExperienceGain() + " xp and spent " + getCost() + " ObjectCoins.";
     }
 }

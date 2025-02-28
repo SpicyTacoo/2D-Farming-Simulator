@@ -20,6 +20,6 @@ class Pickaxe extends Tool {
     }
 
     protected String getSuccessMessage(int tileIndex) {
-        return "Pickaxe used successfully on Tile " + (tileIndex + 1) + ".";
+        return "Pickaxe used successfully on Tile " + (tileIndex + 1) + ". You gained " + getExperienceGain() + " xp and spent " + getCost() + " ObjectCoins.";
     }
 }

@@ -19,6 +19,6 @@ class Plow extends Tool {
     }
 
     protected String getSuccessMessage(int tileIndex) {
-        return "Plow used successfully on Tile " + (tileIndex + 1) + ".";
+        return "Plow used successfully on Tile " + (tileIndex + 1) + ". You gained " + getExperienceGain() + " xp and spent " + getCost() + " ObjectCoins.";
     }
 }

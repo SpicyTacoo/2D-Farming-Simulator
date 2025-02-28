@@ -20,6 +20,6 @@ class Fertilizer extends Tool {
     }
 
     protected String getSuccessMessage(int tileIndex) {
-        return "Fertilizer used successfully on Tile " + (tileIndex + 1) + ".";
+        return "Fertilizer used successfully on Tile " + (tileIndex + 1) + ". You gained " + getExperienceGain() + " xp and spent " + getCost() + " ObjectCoins.";
     }
 }
