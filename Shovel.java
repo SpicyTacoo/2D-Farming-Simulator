@@ -5,7 +5,8 @@ class Shovel extends Tool {
 
     @Override
     protected boolean isUsable(FarmLot farmLot, int tileIndex) {
-        return farmLot.getTile().get(tileIndex).isWithered();
+        return farmLot.getTile().get(tileIndex).isWithered() &&
+                farmLot.getPlayer().getObjectCoins() >= getCost();
     }
 
     @Override
@@ -16,10 +17,11 @@ class Shovel extends Tool {
 
     @Override
     protected String getFailureMessage(int tileIndex) {
-        return "Tile " + (tileIndex + 1) + " is not withered.";
+        return "Tile " + (tileIndex + 1) + " is not withered. Or not enough ObjectCoins.";
     }
 
     protected String getSuccessMessage(int tileIndex) {
-        return "Shovel used successfully on Tile " + (tileIndex + 1) + ". You gained " + getExperienceGain() + " xp and spent " + getCost() + " ObjectCoins.";
+        return "Shovel used successfully on Tile " + (tileIndex + 1) + ". " +
+                "You gained " + getExperienceGain() + " xp and spent " + getCost() + " ObjectCoins.";
     }
 }

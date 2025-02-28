@@ -5,7 +5,9 @@ class Plow extends Tool {
 
     @Override
     protected boolean isUsable(FarmLot farmLot, int tileIndex) {
-        return !farmLot.getTile().get(tileIndex).isOccupied() && !farmLot.getTile().get(tileIndex).isRocked() && !farmLot.getTile().get(tileIndex).isPlowed();
+        return !farmLot.getTile().get(tileIndex).isOccupied() &&
+                !farmLot.getTile().get(tileIndex).isRocked() &&
+                !farmLot.getTile().get(tileIndex).isPlowed();
     }
 
     @Override
@@ -19,6 +21,7 @@ class Plow extends Tool {
     }
 
     protected String getSuccessMessage(int tileIndex) {
-        return "Plow used successfully on Tile " + (tileIndex + 1) + ". You gained " + getExperienceGain() + " xp and spent " + getCost() + " ObjectCoins.";
+        return "Plow used successfully on Tile " + (tileIndex + 1) + ". " +
+                "You gained " + getExperienceGain() + " xp and spent " + getCost() + " ObjectCoins.";
     }
 }

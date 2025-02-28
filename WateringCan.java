@@ -5,7 +5,8 @@ class WateringCan extends Tool {
 
     @Override
     protected boolean isUsable(FarmLot farmLot, int tileIndex) {
-        return !farmLot.getTile().get(tileIndex).isWatered() && farmLot.getTile().get(tileIndex).isOccupied();
+        return !farmLot.getTile().get(tileIndex).isWatered() &&
+                farmLot.getTile().get(tileIndex).isOccupied();
     }
 
     @Override
@@ -19,6 +20,7 @@ class WateringCan extends Tool {
     }
 
     protected String getSuccessMessage(int tileIndex) {
-        return "Watering Can used successfully on Tile " + (tileIndex + 1) + ". You gained " + getExperienceGain() + " xp and spent " + getCost() + " ObjectCoins.";
+        return "Watering Can used successfully on Tile " + (tileIndex + 1) + ". " +
+                "You gained " + getExperienceGain() + " xp and spent " + getCost() + " ObjectCoins.";
     }
 }
