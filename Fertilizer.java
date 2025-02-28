@@ -1,47 +1,25 @@
-public class Fertilizer extends Tool implements Usable{
-
+class Fertilizer extends Tool {
     public Fertilizer(String name, int cost, double experienceGain) {
         super(name, cost, experienceGain);
     }
 
-    public boolean checkObjectCoins(double objectCoins) {
-        if (objectCoins >= getCost())
-            return true;
-        return false;
+    @Override
+    protected boolean isUsable(FarmLot farmLot, int tileIndex) {
+        return !farmLot.getTile().get(tileIndex).isFertilized() && farmLot.getTile().get(tileIndex).isOccupied();
     }
 
     @Override
-    public void useTool(FarmLot farmLot, int index) {
+    protected void performAction(FarmLot farmLot, int tileIndex) {
+        farmLot.getTile().get(tileIndex).fertilizeTile();
+        farmLot.getPlayer().useTool(getCost());
+    }
 
-        int tileNumber = index + 1;
+    @Override
+    protected String getFailureMessage(int tileIndex) {
+        return "Tile " + (tileIndex + 1) + " is already fertilized or empty.";
+    }
 
-        if (checkObjectCoins(farmLot.getPlayer().getObjectCoins())) {
-
-            if (!farmLot.getTile().get(index).isFertilized() && farmLot.getTile().get(index).isOccupied()){
-                farmLot.getTile().get(index).fertilizeTile();
-                farmLot.getPlayer().useTool(getCost());
-                farmLot.getPlayer().gainExperience(getExperienceGain());
-
-                farmLot.getReport().updateToolMessage("You successfully used the fertilizer on tile " + tileNumber + ". You gained " + getExperienceGain() + " xp. and spent " + getCost() + " ObjectCoins." +
-                        "\nYou now have " + farmLot.getPlayer().getObjectCoins() + " ObjectCoins left");
-                System.out.println("You used the Fertilizer and gained " + getExperienceGain() + " xp.");
-                System.out.println("You spent " + getCost() + " objectCoins." + "You now have " + farmLot.getPlayer().getObjectCoins() + " ObjectCoins left");
-            }
-
-            else if (farmLot.getTile().get(index).isFertilized()) {
-                farmLot.getReport().updateToolMessage("Tile " + tileNumber + " already been fertilized for the day");
-                System.out.println("Tile has already been fertilized for the day");
-            }
-
-            else {
-                farmLot.getReport().updateToolMessage("Tile " + tileNumber + " does not contain anything!");
-                System.out.println("Tile " + tileNumber + " does not contain anything!");
-            }
-        }
-
-        else {
-            farmLot.getReport().updateToolMessage("You do not have enough ObjectCoins!");
-            System.out.println("You do not have enough ObjectCoins!");
-        }
+    protected String getSuccessMessage(int tileIndex) {
+        return "Fertilizer used successfully on Tile " + (tileIndex + 1) + ".";
     }
 }

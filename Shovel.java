@@ -1,50 +1,25 @@
-public class Shovel extends Tool implements Usable{
-
+class Shovel extends Tool {
     public Shovel(String name, int cost, double experienceGain) {
         super(name, cost, experienceGain);
     }
 
-    public boolean checkObjectCoins(double objectCoins) {
-        if (objectCoins >= getCost())
-            return true;
-        return false;
-    }
-
-    public boolean checkIfWithered(Tile tile) {
-        if (tile.isWithered())
-            return true;
-        return false;
+    @Override
+    protected boolean isUsable(FarmLot farmLot, int tileIndex) {
+        return farmLot.getTile().get(tileIndex).isWithered();
     }
 
     @Override
-    public void useTool(FarmLot farmLot, int index) {
+    protected void performAction(FarmLot farmLot, int tileIndex) {
+        farmLot.getTile().set(tileIndex, new Tile());
+        farmLot.getPlayer().useTool(getCost());
+    }
 
-        int tileNumber = index + 1;
+    @Override
+    protected String getFailureMessage(int tileIndex) {
+        return "Tile " + (tileIndex + 1) + " is not withered.";
+    }
 
-        if (checkObjectCoins(farmLot.getPlayer().getObjectCoins())) {
-
-            if (checkIfWithered(farmLot.getTile().get(index))) {
-                farmLot.getTile().set(index, new Tile());
-                farmLot.getPlayer().gainExperience(getExperienceGain());
-                farmLot.getPlayer().useTool(getCost());
-                farmLot.getPlayer().gainExperience(getExperienceGain());
-
-                farmLot.getReport().updateToolMessage("You successfully used the shovel on tile " + tileNumber + ". You gained " + getExperienceGain() + " xp and" +
-                        " spent " + getCost() + " ObjectCoins.\n" + "You now have " + farmLot.getPlayer().getObjectCoins() + " ObjectCoins left");
-                System.out.println("You successfully used the shovel and gained " + getExperienceGain() + " xp.");
-                System.out.println("You spent " + getCost() + " ObjectCoins." + " You now have " + farmLot.getPlayer().getObjectCoins() + " ObjectCoins left");
-            }
-
-            else {
-                farmLot.getReport().updateToolMessage("Tile " + tileNumber + " is not withered. You just wasted money.");
-                System.out.println("Tile is not withered. You just wasted money.");
-                farmLot.getPlayer().useTool(getCost());
-            }
-        }
-
-        else {
-            farmLot.getReport().updateToolMessage("You do not have enough ObjectCoins");
-            System.out.println("You do not have enough ObjectCoins");
-        }
+    protected String getSuccessMessage(int tileIndex) {
+        return "Shovel used successfully on Tile " + (tileIndex + 1) + ".";
     }
 }

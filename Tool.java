@@ -1,9 +1,7 @@
-abstract public class Tool {
+public abstract class Tool {
     private String name;
     private int cost;
     private double experienceGain;
-
-    // CONSTRUCTORS
 
     public Tool(String name, int cost, double experienceGain) {
         this.name = name;
@@ -11,9 +9,27 @@ abstract public class Tool {
         this.experienceGain = experienceGain;
     }
 
-    abstract public void useTool(FarmLot farmLot, int index);
+    // Template method
+    public final void useTool(FarmLot farmLot, int tileIndex) {
+        if (isUsable(farmLot, tileIndex)) {
+            performAction(farmLot, tileIndex);
+            gainExperience(farmLot.getPlayer());
+            farmLot.getReport().updateToolMessage(getSuccessMessage(tileIndex));
+            System.out.println(getSuccessMessage(tileIndex));
+        } else {
+            farmLot.getReport().updateToolMessage(getFailureMessage(tileIndex));
+            System.out.println(getFailureMessage(tileIndex));
+        }
+    }
 
-    // GETTERS AND SETTERS
+    protected abstract boolean isUsable(FarmLot farmLot, int tileIndex);
+    protected abstract void performAction(FarmLot farmLot, int tileIndex);
+    protected abstract String getSuccessMessage(int tileIndex);
+    protected abstract String getFailureMessage(int tileIndex);
+    
+    private void gainExperience(Player player) {
+        player.gainExperience(experienceGain);
+    }
 
     public String getName() {
         return name;
@@ -26,5 +42,4 @@ abstract public class Tool {
     public double getExperienceGain() {
         return experienceGain;
     }
-
 }
